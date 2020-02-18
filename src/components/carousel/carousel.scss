@@ -17,6 +17,19 @@ $main-background-color: #000;
         // overflow-x: scroll;
         position: relative;
 
+        .slide-wrapper{
+            position: absolute;
+            &.active{
+                top: 0;
+                left: 0;
+                // right: 0;
+                // bottom: 0;
+            }
+
+            &.not-active{display: none; visibility: hidden;}
+
+        }
+
         .slide {
             width: 1280px;
             height: 500px;
@@ -25,17 +38,8 @@ $main-background-color: #000;
             flex-direction: column;
             justify-content: space-around;
             background-color: $main-background-color;
-            position: absolute;
 
-            &.active{
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-            }
-
-            &.not-active{display: none;}
-
+            
             img{
                 margin-bottom: 10px;
             }

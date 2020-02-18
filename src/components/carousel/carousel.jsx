@@ -1,6 +1,6 @@
 import "./carousel.scss";
 import React, { Component } from "react";
-import Slide from '../slide/slide';
+// import Slide from '../slide/slide';
 import SlideOne from "../slideOne/slideOne";
 import SlideTwo from "../slideTwo/slideTwo";
 import SlideThree from "../slideThree/slideThree";
@@ -22,55 +22,61 @@ class Carousel extends Component {
       <SlideFour />,
       <SlideFive />
     ];
-
   }
 
-  onRightArrowClick = (e) => {
+  onRightArrowClick = e => {
     e.preventDefault();
     // this.setState({ currentIndex: this.state.currentIndex + 1});
-  }
-  
-  onLeftArrowClick = (e) => {
+  };
+
+  onLeftArrowClick = e => {
     e.preventDefault();
     // this.setState({ currentIndex: this.state.currentIndex - 1});
-  }
+  };
 
-  componentDidMount(){
+  componentDidMount() {
     this.changeSlide();
   }
 
   changeSlide = () => {
-
-
     setTimeout(this.changeSlide, 1000);
-  }
+  };
 
   render() {
-    console.log(this.state);
-    
     return (
       <div>
         <div className="carousel">
-
           <ul className="carousel-slides">
             {this.slides.map((slide, index) => {
-              console.log(index, this.state.currentIndex)
-              return <Slide key={index} index={index} currentIndex={this.state.currentIndex} slide={slide}
-              
-              />
-              // return <li key={i} currentindex={this.state.currentIndex}>{item}</li>;
+              console.log(index, this.state.currentIndex);
+              // return <Slide key={index} index={index} currentIndex={this.state.currentIndex} slide={slide}/>
+              return (
+                <li
+                  key={index}
+                  currentndex={this.state.currentIndex}
+                  className={`slide-wrapper ${ 
+                    index === this.state.currentIndex
+                      ? ' active'
+                      : ' not-active'}`
+                  }
+                >
+                  {slide}
+                </li>
+              );
             })}
           </ul>
 
           <ul className="pagination">
             <li>
-              <a href="" onClick={this.onLeftArrowClick}>&lsaquo;</a>
+              <a href="" onClick={this.onLeftArrowClick}>
+                &lsaquo;
+              </a>
             </li>
+            <li>{`${this.state.currentIndex + 1} of ${this.slides.length}`}</li>
             <li>
-              {`${this.state.currentIndex + 1} of ${this.slides.length}`}
-            </li>
-            <li>
-              <a href="" onClick={this.onRightArrowClick}>&rsaquo; </a>
+              <a href="" onClick={this.onRightArrowClick}>
+                &rsaquo;{" "}
+              </a>
             </li>
           </ul>
         </div>
