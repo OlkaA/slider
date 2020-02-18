@@ -24,14 +24,31 @@ class Carousel extends Component {
     ];
   }
 
-  onRightArrowClick = e => {
+  goToNextSlide = e => {
     e.preventDefault();
-    // this.setState({ currentIndex: this.state.currentIndex + 1});
+
+    let current = this.state.currentIndex;
+    if (current === this.slides.length - 1) {
+      current = 0;
+    } else {
+      ++current;
+      this.setState({
+        currentIndex: current
+      });
+    }
   };
 
-  onLeftArrowClick = e => {
+  goToPrevSlide = e => {
     e.preventDefault();
-    // this.setState({ currentIndex: this.state.currentIndex - 1});
+
+    let current = this.state.currentIndex;
+    if (current < 1) {
+      current = this.slides.length;
+    }
+    --current;
+    this.setState({
+      currentIndex: current
+    });
   };
 
   componentDidMount() {
@@ -48,17 +65,17 @@ class Carousel extends Component {
         <div className="carousel">
           <ul className="carousel-slides">
             {this.slides.map((slide, index) => {
-              console.log(index, this.state.currentIndex);
+              // console.log(index, this.state.currentIndex);
               // return <Slide key={index} index={index} currentIndex={this.state.currentIndex} slide={slide}/>
               return (
                 <li
                   key={index}
                   currentndex={this.state.currentIndex}
-                  className={`slide-wrapper ${ 
+                  className={`slide-wrapper ${
                     index === this.state.currentIndex
-                      ? ' active'
-                      : ' not-active'}`
-                  }
+                      ? " active"
+                      : " not-active"
+                  }`}
                 >
                   {slide}
                 </li>
@@ -68,13 +85,13 @@ class Carousel extends Component {
 
           <ul className="pagination">
             <li>
-              <a href="" onClick={this.onLeftArrowClick}>
+              <a href="" onClick={this.goToPrevSlide}>
                 &lsaquo;
               </a>
             </li>
             <li>{`${this.state.currentIndex + 1} of ${this.slides.length}`}</li>
             <li>
-              <a href="" onClick={this.onRightArrowClick}>
+              <a href="" onClick={this.goToNextSlide}>
                 &rsaquo;{" "}
               </a>
             </li>
