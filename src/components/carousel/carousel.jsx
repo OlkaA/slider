@@ -28,14 +28,15 @@ class Carousel extends Component {
     e.preventDefault();
 
     let current = this.state.currentIndex;
+    console.log(current)
     if (current === this.slides.length - 1) {
       current = 0;
     } else {
       ++current;
-      this.setState({
-        currentIndex: current
-      });
     }
+    this.setState({
+      currentIndex: current
+    });
   };
 
   goToPrevSlide = e => {
@@ -55,7 +56,7 @@ class Carousel extends Component {
     return (
       <div>
         <div className="wpapper">
-          <div class="carousel">
+          <div className="carousel">
             <ul className="carousel-slides">
               {this.slides.map((slide, index) => {
                 return (
@@ -78,7 +79,8 @@ class Carousel extends Component {
               {this.slides.map((slide, index) => {
                 return (
                   <li
-                    currentIndex={this.state.currentIndex}
+                    currentindex={this.state.currentIndex}
+                    key={index}
                     index={index}
                     className={
                       index === this.state.currentIndex
