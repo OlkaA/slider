@@ -3,8 +3,7 @@ import "./slideOne.scss";
 import BlueQuotes from "../../assets/blue-quotes.svg";
 import Smile from "../../assets/smile.svg";
 
-const SlideOne = (props) => {
-  console.log('slideOne' , props);
+const SlideOne = () => {
   return (
     
     <div className="slide slide-one">

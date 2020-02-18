@@ -28,7 +28,6 @@ class Carousel extends Component {
     e.preventDefault();
 
     let current = this.state.currentIndex;
-    console.log(current)
     if (current === this.slides.length - 1) {
       current = 0;
     } else {
@@ -51,6 +50,10 @@ class Carousel extends Component {
       currentIndex: current
     });
   };
+
+  goToSlide = (index) => {
+    this.setState({ currentIndex: index });
+  }
 
   render() {
     return (
@@ -79,13 +82,14 @@ class Carousel extends Component {
               {this.slides.map((slide, index) => {
                 return (
                   <li
+                    onClick={() => this.goToSlide(index)}
                     currentindex={this.state.currentIndex}
                     key={index}
                     index={index}
                     className={
                       index === this.state.currentIndex
                         ? " active"
-                        : " not-active"
+                        : ""
                     }
                   ></li>
                 );
