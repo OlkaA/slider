@@ -51,37 +51,45 @@ class Carousel extends Component {
     });
   };
 
-  componentDidMount() {
-    this.changeSlide();
-  }
-
-  changeSlide = () => {
-    setTimeout(this.changeSlide, 1000);
-  };
-
   render() {
     return (
       <div>
-        <div className="carousel">
-          <ul className="carousel-slides">
-            {this.slides.map((slide, index) => {
-              // console.log(index, this.state.currentIndex);
-              // return <Slide key={index} index={index} currentIndex={this.state.currentIndex} slide={slide}/>
-              return (
-                <li
-                  key={index}
-                  currentndex={this.state.currentIndex}
-                  className={`slide-wrapper ${
-                    index === this.state.currentIndex
-                      ? " active"
-                      : " not-active"
-                  }`}
-                >
-                  {slide}
-                </li>
-              );
-            })}
-          </ul>
+        <div className="wpapper">
+          <div class="carousel">
+            <ul className="carousel-slides">
+              {this.slides.map((slide, index) => {
+                return (
+                  <li
+                    key={index}
+                    currentndex={this.state.currentIndex}
+                    className={`slide-wrapper ${
+                      index === this.state.currentIndex
+                        ? " active"
+                        : " not-active"
+                    }`}
+                  >
+                    {slide}
+                  </li>
+                );
+              })}
+            </ul>
+
+            <ul className="carousel-pagination">
+              {this.slides.map((slide, index) => {
+                return (
+                  <li
+                    currentIndex={this.state.currentIndex}
+                    index={index}
+                    className={
+                      index === this.state.currentIndex
+                        ? " active"
+                        : " not-active"
+                    }
+                  ></li>
+                );
+              })}
+            </ul>
+          </div>
 
           <ul className="pagination">
             <li>
