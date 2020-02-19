@@ -89,7 +89,7 @@ class Carousel extends Component {
                     className={
                       index === this.state.currentIndex
                         ? " active"
-                        : ""
+                        : " not-active"
                     }
                   ></li>
                 );
