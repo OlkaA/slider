@@ -1,6 +1,5 @@
 import "./carousel.scss";
 import React, { Component } from "react";
-// import Slide from '../slide/slide';
 import SlideOne from "../slideOne/slideOne";
 import SlideTwo from "../slideTwo/slideTwo";
 import SlideThree from "../slideThree/slideThree";
@@ -24,46 +23,49 @@ class Carousel extends Component {
     ];
   }
 
-  // componentDidMount() {
-  //   this.showSlideShow();
-  // }
+  componentDidMount() {
+    this.showSlideShow();
+  }
 
-  // showSlideShow = () => {
-  //   setInterval or SetTimeOut
-  // }
+  showSlideShow = () => {
+    let self = this;
+    setTimeout(() => {
+      let currentIndex = self.state.currentIndex;
+      if (currentIndex < self.slides.length - 1) {
+        currentIndex++;
+        self.setState({ currentIndex });
+        self.showSlideShow();
+      }
+    }, 2000);
+  };
 
   goToNextSlide = e => {
-    if(e){
+    if (e) {
       e.preventDefault();
     }
 
-    let current = this.state.currentIndex;
-    if (current !== this.slides.length - 1) {
-      ++current;
-    } 
-    this.setState({
-      currentIndex: current
-    });
+    let currentIndex = this.state.currentIndex;
+    if (currentIndex !== this.slides.length - 1) {
+      ++currentIndex;
+    }
+    this.setState({ currentIndex });
   };
 
   goToPrevSlide = e => {
     e.preventDefault();
 
-    let current = this.state.currentIndex;
-    if (current !== 0) {
-      --current;
+    let currentIndex = this.state.currentIndex;
+    if (currentIndex !== 0) {
+      --currentIndex;
     }
-    this.setState({
-      currentIndex: current
-    });
+    this.setState({ currentIndex });
   };
 
-  goToSlide = (index) => {
+  goToSlide = index => {
     this.setState({ currentIndex: index });
-  }
+  };
 
   render() {
-    console.log(this.state.currentIndex)
     return (
       <div>
         <div className="wpapper">
@@ -74,11 +76,9 @@ class Carousel extends Component {
                   <li
                     key={index}
                     currentndex={this.state.currentIndex}
-                    className={`slide-wrapper ${
-                      index === this.state.currentIndex
-                        ? " active"
-                        : ""
-                    }`}
+                    className={
+                      index === this.state.currentIndex ? " active" : ""
+                    }
                   >
                     {slide}
                   </li>
@@ -95,9 +95,7 @@ class Carousel extends Component {
                     key={index}
                     index={index}
                     className={
-                      index === this.state.currentIndex
-                        ? " active"
-                        : ""
+                      index === this.state.currentIndex ? " active" : ""
                     }
                   ></li>
                 );
@@ -114,7 +112,7 @@ class Carousel extends Component {
             <li>{`${this.state.currentIndex + 1} of ${this.slides.length}`}</li>
             <li>
               <a href="" onClick={this.goToNextSlide}>
-                &rsaquo;{" "}
+                &rsaquo;
               </a>
             </li>
           </ul>
