@@ -24,8 +24,18 @@ class Carousel extends Component {
     ];
   }
 
+  // componentDidMount() {
+  //   this.showSlideShow();
+  // }
+
+  // showSlideShow = () => {
+  //   setInterval or SetTimeOut
+  // }
+
   goToNextSlide = e => {
-    e.preventDefault();
+    if(e){
+      e.preventDefault();
+    }
 
     let current = this.state.currentIndex;
     if (current === this.slides.length - 1) {
@@ -56,6 +66,7 @@ class Carousel extends Component {
   }
 
   render() {
+    console.log(this.state.currentIndex)
     return (
       <div>
         <div className="wpapper">
@@ -69,7 +80,7 @@ class Carousel extends Component {
                     className={`slide-wrapper ${
                       index === this.state.currentIndex
                         ? " active"
-                        : " not-active"
+                        : ""
                     }`}
                   >
                     {slide}
@@ -89,7 +100,7 @@ class Carousel extends Component {
                     className={
                       index === this.state.currentIndex
                         ? " active"
-                        : " not-active"
+                        : ""
                     }
                   ></li>
                 );
