@@ -38,11 +38,9 @@ class Carousel extends Component {
     }
 
     let current = this.state.currentIndex;
-    if (current === this.slides.length - 1) {
-      current = 0;
-    } else {
+    if (current !== this.slides.length - 1) {
       ++current;
-    }
+    } 
     this.setState({
       currentIndex: current
     });
@@ -52,10 +50,9 @@ class Carousel extends Component {
     e.preventDefault();
 
     let current = this.state.currentIndex;
-    if (current < 1) {
-      current = this.slides.length;
+    if (current !== 0) {
+      --current;
     }
-    --current;
     this.setState({
       currentIndex: current
     });

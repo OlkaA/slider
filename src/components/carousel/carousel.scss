@@ -21,7 +21,7 @@ $main-background-color: #000;
 
         li.slide-wrapper{
             position: absolute;
-            transition: transform 2s ease;
+            transition: transform 0.5s ease;
 
             &.active{
                 top: 0;
@@ -85,7 +85,7 @@ $main-background-color: #000;
             background: linear-gradient(to left, #6E7986 50%, #fff 50%);
             background-size: 200% 100%;
             background-position: right bottom;
-            transition: all 2s ease;
+            transition: all 0.5s ease;
 
 
             &.active{
